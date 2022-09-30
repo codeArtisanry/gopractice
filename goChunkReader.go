@@ -1,4 +1,4 @@
-package goChunkReader
+package gopractice
 
 import (
 	"bufio"
