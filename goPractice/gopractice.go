@@ -1,4 +1,4 @@
-package gopractice
+package practice
 
 //create a func that returns hash from string
 func Hash(str string) uint32 {
