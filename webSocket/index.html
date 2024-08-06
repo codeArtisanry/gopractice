@@ -1,22 +1,36 @@
-<!-- websockets.html -->
-<input id="input" type="text" />
-<button onclick="send()">Send</button>
-<pre id="output"></pre>
-<script>
-  var input = document.getElementById("input");
-  var output = document.getElementById("output");
-  var socket = new WebSocket("ws://localhost:8080/ws");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <input type="text" id="messageInput" placeholder="Type a message">
+    <button onclick="sendMessage()">Send Message</button>
+    <div id="messages"></div>
 
-  socket.onopen = function () {
-    output.innerHTML += "Status: Connected\n";
-  };
+    <script>
+        const socket = new WebSocket('ws://localhost:8080/ws');
 
-  socket.onmessage = function (e) {
-    output.innerHTML += "Server: " + e.data + "\n";
-  };
+        socket.addEventListener('open', function (event) {
+            console.log('WebSocket is open now.');
+        });
 
-  function send() {
-    socket.send(input.value);
-    input.value = "";
-  }
-</script>
+        socket.addEventListener('message', function (event) {
+            const messagesDiv = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = event.data;
+            messagesDiv.appendChild(messageElement);
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value ? input.value : 'Hello WebSocket Server';
+            socket.send(message);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>

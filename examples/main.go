@@ -10,7 +10,8 @@ func main() {
 	fmt.Println("Enter 1 to calculate area and circumference of a circle")
 	fmt.Println("Enter 2 to convert celsius into fahrenheit")
 	fmt.Println("Enter 3 to use simple calculator")
-  fmt.Println("Enter 4 to swap two variables values")
+	fmt.Println("Enter 4 to swap two variables values")
+  fmt.Println("Enter 5 to find the largest of three numbers")
 	fmt.Scanln(&choice)
 
 	switch choice {
@@ -20,8 +21,10 @@ func main() {
 		convertCelsiusIntoFahrenheit()
 	case 3:
 		simpleCalculator()
-  case 4:
-    swapTwoVariablesValuesWithoutTemp()
+	case 4:
+		swapTwoVariablesValuesWithoutTemp()
+  case 5:
+    largestOfThreeNumbers()
 	default:
 		fmt.Println("Invalid choice")
 	}
@@ -89,18 +92,43 @@ func simpleCalculator() {
 }
 
 func swapTwoVariablesValuesWithoutTemp() {
-  var a, b float64
+	var a, b float64
 
-  fmt.Println("Enter the value of a: ")
-  fmt.Scanln(&a)
+	fmt.Println("Enter the value of a: ")
+	fmt.Scanln(&a)
 
-  fmt.Println("Enter the value of b: ")
-  fmt.Scanln(&b)
+	fmt.Println("Enter the value of b: ")
+	fmt.Scanln(&b)
 
-  a = a + b
-  b = a - b
-  a = a - b
+	a = a + b
+	b = a - b
+	a = a - b
 
-  fmt.Printf("After swapping, a = %.2f and b = %.2f\n", a, b)
+	fmt.Printf("After swapping, a = %.2f and b = %.2f\n", a, b)
 
+}
+
+// +++++++++++++++++++++++++++++++++ Day 2 +++++++++++++++++++++++++++++++++
+
+func largestOfThreeNumbers() {
+	var num1, num2, num3 float64
+
+	fmt.Println("Enter the first number: ")
+	fmt.Scanln(&num1)
+	fmt.Println("Enter the Second number: ")
+	fmt.Scanln(&num2)
+	fmt.Println("Enter the Three number: ")
+	fmt.Scanln(&num3)
+
+	largest := num1
+
+	if num2 > largest {
+		largest = num2
+	}
+
+	if num3 > largest {
+		largest = num3
+	}
+
+	fmt.Printf("The largest number is %.2f\n", largest)
 }
