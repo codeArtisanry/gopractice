@@ -8,11 +8,12 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// upgrader is used to upgrade an HTTP connection to a WebSocket connection.
 var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
+	ReadBufferSize:  1024, // Set the size of the read buffer for incoming messages.
+	WriteBufferSize: 1024, // Set the size of the write buffer for outgoing messages.
 	CheckOrigin: func(r *http.Request) bool {
-		return true
+		return true // Allow connections from any origin.
 	},
 }
 
